@@ -1,6 +1,10 @@
 import streamlit as st
 import joblib
 import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 
 # Load model
 model = joblib.load('trained_model.pkl')
@@ -12,9 +16,9 @@ no_of_adults = st.number_input("Jumlah Dewasa", min_value=0, value=2)
 no_of_children = st.number_input("Jumlah Anak", min_value=0, value=0)
 no_of_weekend_nights = st.number_input("Jumlah Malam Akhir Pekan", min_value=0)
 no_of_week_nights = st.number_input("Jumlah Malam Hari Kerja", min_value=0)
-type_of_meal_plan = st.selectbox("Paket Makanan", ['Meal Plan 1', 'Meal Plan 2', 'Meal Plan 3', 'Meal Plan 4', 'Meal Plan 5', 'Meal Plan 6', 'Not Selected'])
+type_of_meal_plan = st.selectbox("Paket Makanan", ['Meal Plan 1', 'Meal Plan 2', 'Meal Plan 3'])
 required_car_parking_space = st.selectbox("Perlu Parkir Mobil?", [0, 1])
-room_type_reserved = st.selectbox("Tipe Kamar", ['Room_Type 1', 'Room_Type 2', 'Room_Type 3', 'Room_Type 4'])
+room_type_reserved = st.selectbox("Tipe Kamar", ['Room_Type 1', 'Room_Type 2', 'Room_Type 3', 'Room_Type 4', 'Room_Type 5', 'Room_Type 6', 'Room_Type 7'])
 lead_time = st.number_input("Lead Time (hari sebelum check-in)", min_value=0)
 arrival_year = st.selectbox("Tahun Kedatangan", [2017, 2018])
 arrival_month = st.selectbox("Bulan Kedatangan", list(range(1, 13)))
@@ -31,17 +35,17 @@ meal_plan_encoded = {
     'Not Selected': 0,
     'Meal Plan 1': 1,
     'Meal Plan 2': 2,
-    'Meal Plan 3': 3,
-    'Meal Plan 4': 4,
-    'Meal Plan 5': 5,
-    'Meal Plan 6': 6
+    'Meal Plan 3': 3
 }[type_of_meal_plan]
 
 room_type_encoded = {
     'Room_Type 1': 1,
     'Room_Type 2': 2,
     'Room_Type 3': 3,
-    'Room_Type 4': 4
+    'Room_Type 4': 4,
+    'Room_Type 5 : 5',
+    'Room_Type 6 : 6',
+    'Room_Type 7 : 7
 }[room_type_reserved]
 
 market_segment_encoded = {
