@@ -3,28 +3,17 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# Misal model kamu adalah random_forest
-joblib.dump(random_forest, 'model.pkl')
+user_input = [erythema, scaling, definite_borders, itching, koebner_phenomenon, polygonal_papules, follicular_papules, oral_mucosal_involvement,
+                knee_and_elbow_involvement, scalp_involvement, family_history, melanin_incontinence, eosinophils_infiltrate, PNL_infiltrate, 
+                fibrosis_papillary_dermis, exocytosis, acanthosis, hyperkeratosis, parakeratosis, clubbing_rete_ridges, elongation_rete_ridges,\
+                thinning_suprapapillary_epidermis, spongiform_pustule, munro_microabcess, focal_hypergranulosis, disappearance_granular_layer,
+                vacuolisation_damage_basal_layer, spongiosis, saw_tooth_appearance_retes, follicular_horn_plug, perifollicular_parakeratosis,\
+                inflammatory_mononuclear_infiltrate, band_like_infiltrate, age]
 
-# Load model
-model = joblib.load('model.pkl')
-
-# Judul halaman
-st.title("Prediksi Pembatalan Booking Hotel")
-
-# Input dari user
-hotel_type = st.selectbox("Tipe Hotel", ["City Hotel", "Resort Hotel"])
-lead_time = st.number_input("Lead Time (hari)", min_value=0)
-adults = st.number_input("Jumlah Dewasa", min_value=1)
-children = st.number_input("Jumlah Anak", min_value=0)
-weekend_nights = st.number_input("Malam Akhir Pekan", min_value=0)
-week_nights = st.number_input("Malam Hari Kerja", min_value=0)
-previous_cancellations = st.number_input("Pembatalan Sebelumnya", min_value=0)
-
-# Preprocessing manual jika perlu (contoh encoding)
-hotel_encoded = 1 if hotel_type == "City Hotel" else 0
-
-# Gabung input dalam array untuk prediksi
+  model_filename = 'trained_model.pkl'
+  model = load_model(model_filename)
+  prediction = predict_with_model(model, user_input)
+  st.write('The prediction output is: ', prediction)
 features = np.array([[hotel_encoded, lead_time, adults, children,
                       weekend_nights, week_nights, previous_cancellations]])
 
