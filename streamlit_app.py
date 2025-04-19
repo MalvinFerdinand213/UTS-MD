@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 import joblib
 
 # Load model
-model = joblib.load("trained_model.pkl")
+model = pd.read_csv("Dataset_B_hotel.csv") 
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
