@@ -27,11 +27,25 @@ avg_price_per_room = st.number_input("Harga Rata-rata per Kamar", min_value=0.0)
 no_of_special_requests = st.number_input("Jumlah Permintaan Khusus", min_value=0)
 
 # Susun fitur ke dalam array atau dataframe sesuai input
-user_input = np.array([[no_of_adults, no_of_children, no_of_weekend_nights, no_of_week_nights,
-                        type_of_meal_plan, required_car_parking_space, room_type_reserved, lead_time,
-                        arrival_year, arrival_month, arrival_date, market_segment_type, repeated_guest,
-                        no_of_previous_cancellations, no_of_previous_bookings_not_canceled,
-                        avg_price_per_room, no_of_special_requests]])
+user_input = pd.DataFrame({
+    'no_of_adults': [no_of_adults],
+    'no_of_children': [no_of_children],
+    'no_of_weekend_nights': [no_of_weekend_nights],
+    'no_of_week_nights': [no_of_week_nights],
+    'type_of_meal_plan': [type_of_meal_plan],
+    'required_car_parking_space': [required_car_parking_space],
+    'room_type_reserved': [room_type_reserved],
+    'lead_time': [lead_time],
+    'arrival_year': [arrival_year],
+    'arrival_month': [arrival_month],
+    'arrival_date': [arrival_date],
+    'market_segment_type': [market_segment_type],
+    'repeated_guest': [repeated_guest],
+    'no_of_previous_cancellations': [no_of_previous_cancellations],
+    'no_of_previous_bookings_not_canceled': [no_of_previous_bookings_not_canceled],
+    'avg_price_per_room': [avg_price_per_room],
+    'no_of_special_requests': [no_of_special_requests]
+})
 
 # Prediksi
 if st.button("Prediksi"):
