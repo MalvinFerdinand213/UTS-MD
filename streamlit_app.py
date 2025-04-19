@@ -58,6 +58,7 @@ st.write(user_input.columns)
 # Prediksi
 if st.button("Prediksi"):
     try:
+        # Memastikan prediksi dilakukan sesuai pipeline
         prediction = pipeline.predict(user_input)  # Menggunakan pipeline untuk memproses input dan prediksi
         if prediction[0] == 1:
             st.error("Booking kemungkinan DIBATALKAN")
