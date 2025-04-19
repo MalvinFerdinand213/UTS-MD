@@ -3,7 +3,10 @@ import pandas as pd
 import joblib
 
 # ✅ Load model yang benar
-model = joblib.load("trained_model.pkl")
+model = joblib.load("hotel_booking_model.pkl")  # Make sure this is your model file
+
+# Debug: Check the type of the model
+st.write(f"Model type: {type(model)}")
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
@@ -51,10 +54,10 @@ if submitted:
         "no_of_special_requests": no_of_special_requests
     }
 
-    input_df = pd.DataFrame([input_dict])
+    input_df = pd.DataFrame([input_dict])  # Correct DataFrame creation
 
     try:
-        prediction = model.predict(input_df)[0]
+        prediction = model.predict(input_df)[0]  # Assuming model is a trained model with .predict()
         if prediction == "Canceled":
             st.error("❌ Booking kemungkinan **DIBATALKAN**.")
         else:
