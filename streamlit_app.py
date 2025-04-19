@@ -3,7 +3,8 @@ import pandas as pd
 import joblib
 
 # ✅ Load model yang benar
-model = pd.read_csv("Dataset_B_hotel.csv")  # Pastikan file ini ada di folder yang sama
+model = pd.read_csv("Dataset_B_hotel.csv")
+model1 = joblib.load("trained_model.pkl")# Pastikan file ini ada di folder yang sama
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
@@ -54,7 +55,7 @@ if submitted:
     input_df = pd.DataFrame([input_dict])
 
     try:
-        prediction = model.predict(input_df)[0]
+        prediction = model1.predict(input_df)[0]
         if prediction == "Canceled":
             st.error("❌ Booking kemungkinan **DIBATALKAN**.")
         else:
