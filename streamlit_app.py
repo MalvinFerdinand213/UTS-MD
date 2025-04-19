@@ -52,9 +52,9 @@ user_input = pd.DataFrame({
 st.write("Data Input yang Dikirimkan ke Model:")
 st.write(user_input)
 
-# Periksa dimensi user_input dan jumlah fitur yang diterima oleh model
-st.write("Dimensi Input (user_input):", user_input.shape)
-st.write("Jumlah Fitur yang Diharapkan oleh Model:", len(pipeline.named_steps['classifier'].feature_importances_))
+# Tampilkan struktur pipeline untuk debugging
+st.write("Struktur Pipeline:")
+st.write(pipeline)
 
 # Prediksi
 if st.button("Prediksi"):
