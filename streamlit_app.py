@@ -2,8 +2,8 @@ import streamlit as st
 import joblib
 import numpy as np
 
-# Load model
-model = joblib.load('trained_model.pkl')
+# Load model pipeline (model dan preprocessing dalam satu kesatuan)
+pipeline = joblib.load('trained_model.pkl')
 
 st.title("Prediksi Pembatalan Booking Hotel")
 
@@ -26,42 +26,16 @@ no_of_previous_bookings_not_canceled = st.number_input("Jumlah Booking Lalu Tida
 avg_price_per_room = st.number_input("Harga Rata-rata per Kamar", min_value=0.0)
 no_of_special_requests = st.number_input("Jumlah Permintaan Khusus", min_value=0)
 
-# Encoding manual (harus sesuai saat training model)
-meal_plan_encoded = {
-    'Not Selected': 0,
-    'Meal Plan 1': 1,
-    'Meal Plan 2': 2,
-    'Meal Plan 3': 3
-}[type_of_meal_plan]
-
-room_type_encoded = {
-    'Room_Type 1': 1,
-    'Room_Type 2': 2,
-    'Room_Type 3': 3,
-    'Room_Type 4': 4,
-    'Room_Type 5': 5,
-    'Room_Type 6': 6,
-    'Room_Type 7': 7
-}[room_type_reserved]
-
-market_segment_encoded = {
-    'Offline': 0,
-    'Online': 1,
-    'Corporate': 2,
-    'Complementary': 3,
-    'Aviation': 4
-}[market_segment_type]
-
-# Susun fitur ke dalam array
+# Susun fitur ke dalam dataframe
 user_input = np.array([[no_of_adults, no_of_children, no_of_weekend_nights, no_of_week_nights,
-                        meal_plan_encoded, required_car_parking_space, room_type_encoded, lead_time,
-                        arrival_year, arrival_month, arrival_date, market_segment_encoded, repeated_guest,
+                        type_of_meal_plan, required_car_parking_space, room_type_reserved, lead_time,
+                        arrival_year, arrival_month, arrival_date, market_segment_type, repeated_guest,
                         no_of_previous_cancellations, no_of_previous_bookings_not_canceled,
                         avg_price_per_room, no_of_special_requests]])
 
 # Prediksi
 if st.button("Prediksi"):
-    prediction = model.predict(user_input)
+    prediction = pipeline.predict(user_input)  # Menggunakan pipeline untuk memproses input dan prediksi
     if prediction[0] == 1:
         st.error("Booking kemungkinan DIBATALKAN")
     else:
