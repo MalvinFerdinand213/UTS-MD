@@ -1,18 +1,13 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import plotly.express as px
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 import joblib
 
-# Load model
-model = pd.read_csv("Dataset_B_hotel.csv") 
+# ✅ Load model yang benar
+model = joblib.load("trained_model.pkl")  # Pastikan file ini ada di folder yang sama
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
 
-# Input form
 with st.form("input_form"):
     st.subheader("Masukkan Data Booking")
     no_of_adults = st.number_input("Jumlah Dewasa", min_value=0, value=2)
@@ -57,9 +52,14 @@ if submitted:
     }
 
     input_df = pd.DataFrame([input_dict])
-    prediction = model.predict(input_df)[0]
-    
-    if prediction == "Canceled":
-        st.error(f"❌ Booking kemungkinan **DIBATALKAN**.")
-    else:
-        st.success(f"✅ Booking kemungkinan **TIDAK DIBATALKAN**.")
+
+    try:
+        prediction = model.predict(input_df)[0]
+        if prediction == "Canceled":
+            st.error("❌ Booking kemungkinan **DIBATALKAN**.")
+        else:
+            st.success("✅ Booking kemungkinan **TIDAK DIBATALKAN**.")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat prediksi: {e}")
+        st.write("📦 Input DataFrame:")
+        st.write(input_df)
