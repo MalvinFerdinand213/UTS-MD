@@ -52,9 +52,9 @@ user_input = pd.DataFrame({
 st.write("Data Input yang Dikirimkan ke Model:")
 st.write(user_input)
 
-# Tampilkan struktur pipeline untuk debugging
-st.write("Struktur Pipeline:")
-st.write(pipeline)
+# Periksa fitur yang ada dalam model pipeline
+st.write("Fitur yang Diharapkan oleh Model:")
+st.write(user_input.columns)
 
 # Prediksi
 if st.button("Prediksi"):
