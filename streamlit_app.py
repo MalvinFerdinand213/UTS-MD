@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # ✅ Load model yang benar
-model = read_csv("Dataset_B_hotel.csv")  # Pastikan file ini ada di folder yang sama
+model = pd.read_csv("Dataset_B_hotel.csv")  # Pastikan file ini ada di folder yang sama
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
