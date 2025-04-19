@@ -3,6 +3,9 @@ import joblib
 import numpy as np
 import pandas as pd
 
+# Misal model kamu adalah random_forest
+joblib.dump(random_forest, 'model.pkl')
+
 # Load model
 model = joblib.load('model.pkl')
 
