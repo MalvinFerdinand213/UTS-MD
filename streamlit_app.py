@@ -51,7 +51,7 @@ if submitted:
         "no_of_special_requests": no_of_special_requests
     }
 
-    input_df = pd.read_csv("Dataset_b_hotel.csv")
+    input_df = pd.DataFrame("Dataset_b_hotel.csv")
 
     try:
         prediction = model.predict(input_df)[0]
