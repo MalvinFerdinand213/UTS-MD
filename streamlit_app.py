@@ -1,7 +1,7 @@
 import streamlit as st
 import joblib
-import numpy as np
 import pandas as pd
+import numpy as np
 
 # Load model pipeline (model dan preprocessing dalam satu kesatuan)
 pipeline = joblib.load('trained_model.pkl')
@@ -27,7 +27,7 @@ no_of_previous_bookings_not_canceled = st.number_input("Jumlah Booking Lalu Tida
 avg_price_per_room = st.number_input("Harga Rata-rata per Kamar", min_value=0.0)
 no_of_special_requests = st.number_input("Jumlah Permintaan Khusus", min_value=0)
 
-# Susun fitur ke dalam array atau dataframe sesuai input
+# Susun input sebagai DataFrame agar sesuai dengan pipeline
 user_input = pd.DataFrame({
     'no_of_adults': [no_of_adults],
     'no_of_children': [no_of_children],
@@ -48,10 +48,21 @@ user_input = pd.DataFrame({
     'no_of_special_requests': [no_of_special_requests]
 })
 
+# Tampilkan data input untuk debugging
+st.write("Data Input yang Dikirimkan ke Model:")
+st.write(user_input)
+
+# Periksa dimensi user_input dan jumlah fitur yang diterima oleh model
+st.write("Dimensi Input (user_input):", user_input.shape)
+st.write("Jumlah Fitur yang Diharapkan oleh Model:", len(pipeline.named_steps['classifier'].feature_importances_))
+
 # Prediksi
 if st.button("Prediksi"):
-    prediction = pipeline.predict(user_input)  # Menggunakan pipeline untuk memproses input dan prediksi
-    if prediction[0] == 1:
-        st.error("Booking kemungkinan DIBATALKAN")
-    else:
-        st.success("Booking kemungkinan TIDAK DIBATALKAN")
+    try:
+        prediction = pipeline.predict(user_input)  # Menggunakan pipeline untuk memproses input dan prediksi
+        if prediction[0] == 1:
+            st.error("Booking kemungkinan DIBATALKAN")
+        else:
+            st.success("Booking kemungkinan TIDAK DIBATALKAN")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan: {e}")
