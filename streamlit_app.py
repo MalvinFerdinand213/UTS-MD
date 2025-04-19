@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import numpy as np
+import pandas as pd
 
 # Load model pipeline (model dan preprocessing dalam satu kesatuan)
 pipeline = joblib.load('trained_model.pkl')
