@@ -43,9 +43,9 @@ room_type_encoded = {
     'Room_Type 2': 2,
     'Room_Type 3': 3,
     'Room_Type 4': 4,
-    'Room_Type 5 : 5',
-    'Room_Type 6 : 6',
-    'Room_Type 7 : 7'
+    'Room_Type 5': 5,
+    'Room_Type 6': 6,
+    'Room_Type 7': 7
 }[room_type_reserved]
 
 market_segment_encoded = {
