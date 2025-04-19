@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # ✅ Load model yang benar
-model = joblib.load("hotel_booking_model.pkl")  # Make sure this is your model file
+model = joblib.load("trained_model.pkl")  # Make sure this is your model file
 
 # Debug: Check the type of the model
 st.write(f"Model type: {type(model)}")
