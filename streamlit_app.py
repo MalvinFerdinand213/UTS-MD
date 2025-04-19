@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # ✅ Load model yang benar
-model = pd.read_csv("Dataset_B_hotel.csv")
+model = joblib.load("trained_model.pkl")
 
 st.set_page_config(page_title="Hotel Booking Prediction", layout="centered")
 st.title("🛎️ Prediksi Status Booking Hotel")
