@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Load model
-model = joblib.load('model.pkl')
+model = joblib.load('trained_model.pkl')
 
 st.title("Prediksi Pembatalan Booking Hotel")
 
