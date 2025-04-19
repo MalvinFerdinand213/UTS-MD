@@ -1,10 +1,6 @@
 import streamlit as st
 import joblib
 import numpy as np
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.ensemble import RandomForestClassifier
 
 # Load model
 model = joblib.load('trained_model.pkl')
