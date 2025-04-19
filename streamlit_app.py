@@ -12,7 +12,7 @@ no_of_adults = st.number_input("Jumlah Dewasa", min_value=0, value=2)
 no_of_children = st.number_input("Jumlah Anak", min_value=0, value=0)
 no_of_weekend_nights = st.number_input("Jumlah Malam Akhir Pekan", min_value=0)
 no_of_week_nights = st.number_input("Jumlah Malam Hari Kerja", min_value=0)
-type_of_meal_plan = st.selectbox("Paket Makanan", ['Meal Plan 1', 'Meal Plan 2', 'Meal Plan 3', 'Not Selected'])
+type_of_meal_plan = st.selectbox("Paket Makanan", ['Meal Plan 1', 'Meal Plan 2', 'Meal Plan 3', 'Meal Plan 4', 'Meal Plan 5', 'Meal Plan 6', 'Not Selected'])
 required_car_parking_space = st.selectbox("Perlu Parkir Mobil?", [0, 1])
 room_type_reserved = st.selectbox("Tipe Kamar", ['Room_Type 1', 'Room_Type 2', 'Room_Type 3', 'Room_Type 4'])
 lead_time = st.number_input("Lead Time (hari sebelum check-in)", min_value=0)
@@ -31,7 +31,10 @@ meal_plan_encoded = {
     'Not Selected': 0,
     'Meal Plan 1': 1,
     'Meal Plan 2': 2,
-    'Meal Plan 3': 3
+    'Meal Plan 3': 3,
+    'Meal Plan 4': 4,
+    'Meal Plan 5': 5,
+    'Meal Plan 6': 6
 }[type_of_meal_plan]
 
 room_type_encoded = {
