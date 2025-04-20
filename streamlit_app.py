@@ -12,7 +12,7 @@ no_of_adults = st.number_input("Jumlah Dewasa", min_value=0, value=2)
 no_of_children = st.number_input("Jumlah Anak", min_value=0, value=0)
 no_of_weekend_nights = st.number_input("Jumlah Malam Akhir Pekan", min_value=0)
 no_of_week_nights = st.number_input("Jumlah Malam Hari Kerja", min_value=0)
-required_car_parking_space = st.selectbox("Perlu Parkir Mobil?", [0, 1]
+required_car_parking_space = st.selectbox("Perlu Parkir Mobil?", [0, 1])
 lead_time = st.number_input("Lead Time (hari sebelum check-in)", min_value=0)
 arrival_year = st.selectbox("Tahun Kedatangan", [2017, 2018])
 arrival_month = st.selectbox("Bulan Kedatangan", list(range(1, 13)))
